@@ -269,5 +269,5 @@
        1. Add "default" to next Profile"profileName" like @Profile({"EN","default"})  
 
    11.      Environment Implementation testing using @Qualifier and @Profile
-       
 
+   12.      LifeCycle

@@ -25,4 +25,11 @@ public class MyController {
         //return "Hello Everyone from MyController CLass";
         return greetingService.sayGreeting();
     }
+    public void beforeInit(){
+        System.out.println("## - Before Init - Called by Bean Post Processor");
+    }
+
+    public void afterInit(){
+        System.out.println("## - After init called by Bean Post Processor");
+    }
 }
