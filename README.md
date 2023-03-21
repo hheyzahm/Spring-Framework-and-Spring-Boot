@@ -179,7 +179,8 @@
           3. Add GreetingService variable in MyController
           4. In MyController Constructor make GreetingService variable a connection to GreetingServiceImpl() by using a **new** keyword   
           5. return **greetingService.sayGreeting()** in MyController method sayHelloFromMyController()
-          6. and run a test.
+          6. and run a test.  
+   
    5.       Dependency Injection Without Spring
        1. Create a **PropertyInjectionController** class
            1. add **String sayHelloFromPropertyController();**
@@ -238,4 +239,13 @@
           2. add **@Autowired** to SetterInjectedController variable
           3. And Run the test.  
    
+   7.       Primary Bean
+      1. Create a **GreetingServicePrimary** class into services package
+         1. implement **String sayGreeting();** 
+         2. Add **@Service** annotation
+         3. Add **@Primary** annotation
+         4. Run the test in following tests  
+            1. ConstructorInjectionControllerTest.
+            2. PropertyInjectionControllerTest.
+            3. SetterInjectionControllerTest.
    
