@@ -236,5 +236,6 @@
       6. In SetterInjectedControllerTest
           1. add **@SpringBootTest** annotation to SetterInjectedControllerTest
           2. add **@Autowired** to SetterInjectedController variable
-          3. And Run the test.
-      
+          3. And Run the test.  
+   
+   
