@@ -11,12 +11,15 @@ import springFrameworkSpringBoot.S3DependencyInjectionWithSpring.services.Greeti
  * @Created 15 03 2023 - 4:26 PM
  * @Author Hazeem Hassan
  */
-
+@Controller
 public class SetterInjectionController {
 
     private GreetingService greetingService;
 
+
+    @Autowired
     public void setGreetingService(GreetingService greetingService) {
+        System.out.println("SetterInjectedController.setGreetingService");
         this.greetingService = greetingService;
     }
 

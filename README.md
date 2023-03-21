@@ -216,3 +216,25 @@
                4. Implement the sayHelloFromConstructorController() method with calling `ConstructorInjectionController.sayHelloFromSetterController()`
            4. And Run the test.  
    
+   6.       Dependency Injection With Spring Framework
+      1. In ConstructorInjectorController
+          1. add **@Controller** annotation
+      2. In ConstructorInjectorControllerTest   
+          1. add **@SpringBootTest** annotation to ConstructorInjectorControllerTest
+          2. add **@Autowired** to ConstructorInjectorController variable 
+          3. And Run the test.
+      3. In PropertyInjectedController
+         1. add **@Controller** annotation
+         2. add **@Autowired** to **GreetingService** variable
+      4. In PropertyInjectedControllerTest
+          1. add **@SpringBootTest** annotation to PropertyInjectedControllerTest
+          2. add **@Autowired** to PropertyInjectedController variable
+          3. And Run the test.
+      5. In SetterInjectedController
+          1. add **@Controller** annotation
+          2. add **@Autowired** to **setGreetingService()** method
+      6. In SetterInjectedControllerTest
+          1. add **@SpringBootTest** annotation to SetterInjectedControllerTest
+          2. add **@Autowired** to SetterInjectedController variable
+          3. And Run the test.
+      
