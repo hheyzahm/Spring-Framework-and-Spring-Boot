@@ -1,22 +1,23 @@
-1.      Create a project using a Spring Initializr https://start.spring.io/
-    1.       With the following settings
-        1. Project => Maven
-        2. Language => Java
-        3. Spring Boot => 3.0.4 (Whatever similar to this)
-        4. Project Metadata according to your need
-        5. Packaging => Jar
-        6. Java => 17 or higher
+1.      Create a project using a Spring Initializr  
+   [https://start.spring.io/](https://start.spring.io/)  
+2.      1. With the following settings
+           1. Project => Maven
+           2. Language => Java
+           3. Spring Boot => 3.0.4 (Whatever similar to this)
+           4. Project Metadata according to your need
+           5. Packaging => Jar
+           6. Java => 17 or higher
 
-    2.     Add following dependencies
-        1. Spring Web  **Web**  
-           Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
-        2. Spring Data JPA **SQL**  
-           Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-        4. H2 Database **SQL**  
-           Provides a fast in-memory database that supports JDBC API and R2DBC access, with a small (2mb) footprint. Supports embedded and server modes as well as a browser based console application.
+       2.  Add following dependencies
+           1. Spring Web  **Web**  
+              Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+           2. Spring Data JPA **SQL**  
+              Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+           4. H2 Database **SQL**  
+              Provides a fast in-memory database that supports JDBC API and R2DBC access, with a small (2mb) footprint. Supports embedded and server modes as well as a browser based console application.
 
-2.      Open Project in Intellij
-3.      Building a Spring Boot Web App
+3.      Open Project in Intellij
+4.      Building a Spring Boot Web App
     1.       Add Entities
         1. Author
            1. add **@Entity** annotation
@@ -119,4 +120,29 @@
            [http://localhost:8080/authors](http://localhost:8080/authors)  
                
        ## **_Congratulation on your first success_**
-     
+5.      Dependency Injection with Spring
+   1.       Add Controller  
+      1. Named **MyController**
+      2. **@Controller** annotation
+      3. Create a method String sayHello() 
+   2. Go to SpringApplication Class
+      1. Add Following code  
+         `ApplicationContext ctx = SpringApplication.run(SpringFrameworkAndSpringBootApplication.class, args);
+         MyController myController = ctx.getBean(MyController.class);
+         System.out.println(myController.sayHelloFromMyController());`  
+      into **main** method 
+   3. Add Test for MyController 
+      1. By selecting it name and pressing alt + enter together
+      2. Go to MyControllerTest
+         1. Add **@SpringBootTest** Annotation at start
+         2. Add **@Autowired** to  (Individually)
+            1. ApplicationContext application
+            2. MyController myController
+         3. Add **@Test** annotation to the following method  
+            void **testAutowiredOfController()**
+         4. Add **@Test** annotation to the following method  
+            void **testControllerFromCtx()**
+         5. Add **@Test** annotation to the following method  
+             void **contextLoad()**  
+         Run the test
+               
