@@ -22,7 +22,7 @@ public class MyController {
 
     public String sayHelloFromMyController() {
         System.out.println("I'm in the controller");
-        return "Hello Everyone from MyController CLass";
-
+        //return "Hello Everyone from MyController CLass";
+        return greetingService.sayGreeting();
     }
 }

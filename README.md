@@ -94,7 +94,7 @@
              2. AuthorController
                  1. add **@Controller** annotation
                  2. Create BookService variable  
-                    private final AuthorService AuthorService;
+                    private final AuthorService authorService;
                  3. Create BookController Constructor
                  4. Create a method to get all the book from database
                      1. With the following things
@@ -145,4 +145,74 @@
          5. Add **@Test** annotation to the following method  
              void **contextLoad()**  
          Run the test
-               
+                    1. Author
+                        1. add **@Entity** annotation
+                        2. add **@Id** annotation to primary key for particular entity
+                        3. Add desire data variables
+                        4. Add Constructor
+                        5. Create there Getter and Setter
+                        6. Add equal and hashCode methods
+                        7. add toString method
+                    2. Book
+                        1. add **@Entity** annotation
+                        2. add **@Id** annotation to primary key for particular entity
+                        3. Add desire data variables
+                        4. Add Constructor
+                        5. Create there Getter and Setter
+                        6. Add equal and hashCode methods
+                        7. add toString method
+                    3. Publisher
+                        1. add **@Entity** annotation
+                        2. add **@Id** annotation to primary key for particular entity
+                        3. Add desire data variables
+                        4. Add Constructor
+                        5. Create there Getter and Setter
+                        6. Add equal and hashCode methods
+                        7. add toString method
+   4.       Dependency Without Injection
+       1. Create a **GreetingService** Interface
+          1. add **String sayGreeting();**
+          2. Create a **GreetingServiceImpl**
+             1. Add **@Service** annotation
+             2. Implementation of GreetingService via **implementation GreetingService**
+             3. Implement the **sayGreeting()** method returning a string message.
+          3. Add GreetingService variable in MyController
+          4. In MyController Constructor make GreetingService variable a connection to GreetingServiceImpl() by using a **new** keyword   
+          5. return **greetingService.sayGreeting()** in MyController method sayHelloFromMyController()
+          6. and run a test.
+   5.       Dependency Injection Without Spring
+       1. Create a **PropertyInjectionController** class
+           1. add **String sayHelloFromPropertyController();**
+           2.  Create a **PropertyInjectionControllerTest**
+                1. Create a PropertyInjectionController variable
+                2. Add **@BeforeEach** annotation
+                3. add below stated code of lines  
+                   `propertyInjectionController=new PropertyInjectionController();`  
+                   `propertyInjectionController.greetingService=new GreetingServiceImpl();`
+                4. Implement the sayHelloFromPropertyController() method with calling `propertyInjectionController.sayHelloFromPropertyController()`
+           3. And Run the test.  
+       
+       2. Create a **SetterInjectionController** class
+           
+           1. add **String sayHelloFromSetterController();**
+           2. Add Setter method for greeting Service variable via setGreetingService(GreetingService greetingService)
+           3. Create a **SetterInjectionControllerTest**
+               1. Create a SetterInjectionController variable
+               2. Add **@BeforeEach** annotation
+               3. add below stated code of lines  
+                  `setterInjectionController =new SetterInjectionController();`  
+                  `setterInjectionController.setGreetingService(new GreetingServiceImpl());`
+               4. Implement the sayHelloFromSetterController() method with calling `setterInjectionController.sayHelloFromSetterController()`
+           4. And Run the test.  
+       
+       3. Create a **ConstructorInjectionController** class
+           1. add **String sayHelloFromConstructorController();**
+           2. Add Constructor with parameter GreetingService like ConstructorInjectionController(GreetingService greetingService)
+           3. Create a **ConstructorInjectionControllerTest**
+               1. Create a ConstructorInjectionController variable
+               2. Add **@BeforeEach** annotation
+               3. add below stated code of lines  
+                  `constructorInjectionController=new ConstructorInjectionController(new GreetingServiceImpl());`
+               4. Implement the sayHelloFromConstructorController() method with calling `ConstructorInjectionController.sayHelloFromSetterController()`
+           4. And Run the test.  
+   
