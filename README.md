@@ -265,6 +265,7 @@
          1. add **@Profile("ES")** annotation 
          2. add **@Service("i18NService")** annotation
       4. Add @ActiveProfiles("desireProfile") annotation before the running in associated class or file
-   
-       
+   10.      Default Profile  Bean
+       1. Add "default" to next Profile"profileName" like @Profile({"EN","default"})  
+
    
