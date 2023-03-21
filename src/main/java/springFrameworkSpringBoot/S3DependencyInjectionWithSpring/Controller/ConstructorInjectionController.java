@@ -12,7 +12,7 @@ import springFrameworkSpringBoot.S3DependencyInjectionWithSpring.services.Greeti
 public class ConstructorInjectionController {
     private final GreetingService greetingService;
 
-    public ConstructorInjectionController( GreetingService greetingService) {
+    public ConstructorInjectionController(@Qualifier("greetingServiceImpl") GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 

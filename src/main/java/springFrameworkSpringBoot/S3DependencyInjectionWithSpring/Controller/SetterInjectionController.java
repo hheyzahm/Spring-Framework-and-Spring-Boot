@@ -17,6 +17,16 @@ public class SetterInjectionController {
     private GreetingService greetingService;
 
 
+    /**
+     * one way of using @Qualifier
+     * @Qualifier("greetingServiceSetterInjected")
+     */
+    /**
+     * Second way of using @Qualifier
+     *
+     * @Qualifier("greetingServiceSetter")
+     */
+    @Qualifier("greetingServiceSetter")
     @Autowired
     public void setGreetingService(GreetingService greetingService) {
         System.out.println("SetterInjectedController.setGreetingService");

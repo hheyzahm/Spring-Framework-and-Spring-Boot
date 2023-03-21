@@ -247,5 +247,14 @@
          4. Run the test in following tests  
             1. ConstructorInjectionControllerTest.
             2. PropertyInjectionControllerTest.
-            3. SetterInjectionControllerTest.
+            3. SetterInjectionControllerTest.  
+   8.       Qualifier Bean
+       1. Create A GreetingServicePropertyInjected class in services
+            1. add **@Service("greetingServiceProperty")** annotation 
+            2. add **@Qualifier("greetingServiceProperty")** in PropertyInjectionController
+       2. Create A GreetingServiceSetterInjected class in services
+          1. add **@Service("greetingServiceSetter")** annotation
+          2. add **@Qualifier("greetingServiceSetter")** in SetterInjectionController
+       3. Add **@Qualifier("greetingServiceImpl")** in Constructor next to GreetingService variable
+       
    
