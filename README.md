@@ -255,6 +255,16 @@
        2. Create A GreetingServiceSetterInjected class in services
           1. add **@Service("greetingServiceSetter")** annotation
           2. add **@Qualifier("greetingServiceSetter")** in SetterInjectionController
-       3. Add **@Qualifier("greetingServiceImpl")** in Constructor next to GreetingService variable
+       3. Add **@Qualifier("greetingServiceImpl")** in Constructor next to GreetingService variable.
+   9.       Profile  Bean
+      1. Create A Myi18NController in Controller
+      2. Create A EnglishGreetingService in services for profiling
+         1. add **@Profile("EN")** annotation
+         2. add **@Service("i18NService")** annotation
+      3. Create A SpanishEnglishGreetingService in services for profiling
+         1. add **@Profile("ES")** annotation 
+         2. add **@Service("i18NService")** annotation
+      4. Add @ActiveProfiles("desireProfile") annotation before the running in associated class or file
+   
        
    
