@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7;
-import springFrameworkSpringBoot.S8ExceptionHandeling.NotFoundException;
 
 import java.util.List;
 import java.util.UUID;

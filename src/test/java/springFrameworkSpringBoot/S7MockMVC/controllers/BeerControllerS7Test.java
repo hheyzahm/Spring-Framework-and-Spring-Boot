@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7Impl;
-import springFrameworkSpringBoot.S8ExceptionHandeling.NotFoundException;
+import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;

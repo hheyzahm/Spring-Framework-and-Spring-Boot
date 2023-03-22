@@ -1,7 +1,6 @@
-package springFrameworkSpringBoot.S8ExceptionHandeling;
+package springFrameworkSpringBoot.S8ExceptionHandling;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
