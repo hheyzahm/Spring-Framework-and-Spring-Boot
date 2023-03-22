@@ -1,9 +1,8 @@
 package springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,6 +19,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CustomerEntity {
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(length = 36, columnDefinition = "varchar2", updatable = false, nullable = false)
     private UUID id;
     private String name;
     @Version
