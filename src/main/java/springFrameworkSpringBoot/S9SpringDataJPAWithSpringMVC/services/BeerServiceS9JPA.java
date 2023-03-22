@@ -3,6 +3,7 @@ package springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.Model.BeerDTO;
 import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.mappers.BeerMapper;
 import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.repositories.BeerRepositoryS9;
@@ -52,6 +53,7 @@ public class BeerServiceS9JPA implements BeerServiceS9 {
             foundBeer.setBeerStyle(beer.getBeerStyle());
             foundBeer.setUpc(beer.getUpc());
             foundBeer.setPrice(beer.getPrice());
+            foundBeer.setQuantityOnHand(beer.getQuantityOnHand());
             atomicReference.set(Optional.of(beerMapper
                     .beerEntitytoBeerDTO(beerRepository.save(foundBeer))));
         }, () -> {
@@ -71,7 +73,31 @@ public class BeerServiceS9JPA implements BeerServiceS9 {
     }
 
     @Override
-    public void patchBeerById(UUID beerId, BeerDTO beer) {
+    public Optional<BeerDTO> patchBeerById(UUID beerId, BeerDTO beer) {
+        AtomicReference<Optional<BeerDTO>> atomicReference = new AtomicReference<>();
 
+        beerRepository.findById(beerId).ifPresentOrElse(foundBeer -> {
+            if (StringUtils.hasText(beer.getBeerName())){
+                foundBeer.setBeerName(beer.getBeerName());
+            }
+            if (beer.getBeerStyle() != null){
+                foundBeer.setBeerStyle(beer.getBeerStyle());
+            }
+            if (StringUtils.hasText(beer.getUpc())){
+                foundBeer.setUpc(beer.getUpc());
+            }
+            if (beer.getPrice() != null){
+                foundBeer.setPrice(beer.getPrice());
+            }
+            if (beer.getQuantityOnHand() != null){
+                foundBeer.setQuantityOnHand(beer.getQuantityOnHand());
+            }
+            atomicReference.set(Optional.of(beerMapper
+                    .beerEntitytoBeerDTO(beerRepository.save(foundBeer))));
+        }, () -> {
+            atomicReference.set(Optional.empty());
+        });
+
+        return atomicReference.get();
     }
 }

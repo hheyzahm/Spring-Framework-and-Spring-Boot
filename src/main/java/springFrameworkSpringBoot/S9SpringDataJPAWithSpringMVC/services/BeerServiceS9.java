@@ -12,6 +12,7 @@ import java.util.UUID;
  * @Author Hazeem Hassan
  */
 public interface BeerServiceS9 {
+
     List<BeerDTO> listBeers();
 
     Optional<BeerDTO> getBeerById(UUID id);
@@ -22,5 +23,5 @@ public interface BeerServiceS9 {
 
     Boolean deleteById(UUID beerId);
 
-    void patchBeerById(UUID beerId, BeerDTO beer);
+    Optional<BeerDTO> patchBeerById(UUID beerId, BeerDTO beer);
 }
