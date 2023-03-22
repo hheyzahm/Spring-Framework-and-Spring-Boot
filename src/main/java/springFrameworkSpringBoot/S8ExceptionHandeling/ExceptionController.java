@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @Created 22 03 2023 - 2:28 PM
  * @Author Hazeem Hassan
  */
-@ControllerAdvice
+//@ControllerAdvice
 // above annotation is used for global exception handler process
 public class ExceptionController {
 
