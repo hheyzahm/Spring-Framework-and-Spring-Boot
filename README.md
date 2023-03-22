@@ -271,3 +271,23 @@
    11.      Environment Implementation testing using @Qualifier and @Profile
 
    12.      LifeCycle
+   
+   13.      Project Lombok
+        1. Add Dependency  
+           `<dependency>`  
+           `<groupId>org.projectlombok</groupId>`  
+           `<artifactId>lombok</artifactId>`  
+           `<optional>true</optional>`  
+           `</dependency>`
+       2. Create model 
+          1. Class Beer 
+             1. add **@Data** for lombok
+             2. add **@Builder** for lombok 
+          2. enum  BeerStyle
+          3. Create Services
+             1. Interface BeerService 
+                1. Create Class BeerServiceImpl Implementation BeerService
+                   1. Well Implement method of BeerService which return beer details whose id is passed to method.
+          4. Create Class BeerController
+       3. to De-Lombok go to refactor from menu and select de-lombok option and unselect the selected annotation. 
+       
