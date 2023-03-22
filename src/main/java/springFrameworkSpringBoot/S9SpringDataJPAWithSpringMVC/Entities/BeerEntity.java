@@ -28,7 +28,7 @@ public class BeerEntity {
     @Version
     private Integer version;
     private String beerName;
-    private BeerStyleS9 beerStyleS9;
+    private BeerStyleS9 beerStyle;
     private String upc;
     private Integer quantityOnHand;
     private BigDecimal price;

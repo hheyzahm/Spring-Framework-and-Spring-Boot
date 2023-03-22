@@ -67,6 +67,11 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.3.Final</version>
+        </dependency>
         <!--Added According to Need-->
     </dependencies>
 
@@ -91,7 +96,8 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <!--apStruct Dependencies and Configuration-->
+            <!--mapStruct Dependencies and Configuration-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

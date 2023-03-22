@@ -14,13 +14,13 @@ import springFrameworkSpringBoot.S2BuildingSpringBootWebApplication.repositories
  * @Author Hazeem Hassan
  */
 @Component
-public class BootstrapData  implements CommandLineRunner {
+public class BootstrapDataS2 implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
+    public BootstrapDataS2(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
