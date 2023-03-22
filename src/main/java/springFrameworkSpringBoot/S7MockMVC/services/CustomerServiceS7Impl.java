@@ -1,6 +1,7 @@
 package springFrameworkSpringBoot.S7MockMVC.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import springFrameworkSpringBoot.S7MockMVC.Model.CustomerS7;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
     private Map<UUID, CustomerS7> customerMap;
 
     public CustomerServiceS7Impl() {
-        CustomerS7 customerS71 = CustomerS7.builder()
+        CustomerS7 customer1 = CustomerS7.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 1")
                 .version(1)
@@ -24,7 +25,7 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        CustomerS7 customerS72 = CustomerS7.builder()
+        CustomerS7 customer2 = CustomerS7.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 2")
                 .version(1)
@@ -32,7 +33,7 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        CustomerS7 customerS73 = CustomerS7.builder()
+        CustomerS7 customer3 = CustomerS7.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 3")
                 .version(1)
@@ -41,9 +42,18 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
                 .build();
 
         customerMap = new HashMap<>();
-        customerMap.put(customerS71.getId(), customerS71);
-        customerMap.put(customerS72.getId(), customerS72);
-        customerMap.put(customerS73.getId(), customerS73);
+        customerMap.put(customer1.getId(), customer1);
+        customerMap.put(customer2.getId(), customer2);
+        customerMap.put(customer3.getId(), customer3);
+    }
+
+    @Override
+    public void patchCustomerById(UUID customerId, CustomerS7 customer) {
+        CustomerS7 existing = customerMap.get(customerId);
+
+        if (StringUtils.hasText(customer.getName())) {
+            existing.setName(customer.getName());
+        }
     }
 
     @Override
@@ -52,25 +62,25 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
     }
 
     @Override
-    public void updateCustomerById(UUID customerId, CustomerS7 customerS7) {
+    public void updateCustomerById(UUID customerId, CustomerS7 customer) {
         CustomerS7 existing = customerMap.get(customerId);
-        existing.setName(customerS7.getName());
+        existing.setName(customer.getName());
     }
 
     @Override
-    public CustomerS7 saveNewCustomer(CustomerS7 customerS7) {
+    public CustomerS7 saveNewCustomer(CustomerS7 customer) {
 
-        CustomerS7 savedCustomerS7 = CustomerS7.builder()
+        CustomerS7 savedCustomer = CustomerS7.builder()
                 .id(UUID.randomUUID())
                 .version(1)
                 .updateDate(LocalDateTime.now())
                 .createdDate(LocalDateTime.now())
-                .name(customerS7.getName())
+                .name(customer.getName())
                 .build();
 
-        customerMap.put(savedCustomerS7.getId(), savedCustomerS7);
+        customerMap.put(savedCustomer.getId(), savedCustomer);
 
-        return savedCustomerS7;
+        return savedCustomer;
     }
 
     @Override
@@ -82,4 +92,6 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
     public List<CustomerS7> getAllCustomers() {
         return new ArrayList<>(customerMap.values());
     }
+
+
 }

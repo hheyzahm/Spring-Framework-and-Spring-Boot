@@ -12,14 +12,15 @@ import java.util.UUID;
  * @Author Hazeem Hassan
  */
 public interface CustomerServiceS7 {
-
     CustomerS7 getCustomerById(UUID uuid);
 
     List<CustomerS7> getAllCustomers();
 
-    CustomerS7 saveNewCustomer(CustomerS7 customerS7);
+    CustomerS7 saveNewCustomer(CustomerS7 customer);
 
-    void updateCustomerById(UUID customerId, CustomerS7 customerS7);
+    void updateCustomerById(UUID customerId, CustomerS7 customer);
 
     void deleteCustomerById(UUID customerId);
+
+    void patchCustomerById(UUID customerId, CustomerS7 customer);
 }
