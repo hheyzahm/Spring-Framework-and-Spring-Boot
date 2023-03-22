@@ -72,6 +72,11 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.5.3.Final</version>
         </dependency>
+        <!--Data Validation-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
         <!--Added According to Need-->
     </dependencies>
 
