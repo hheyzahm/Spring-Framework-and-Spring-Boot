@@ -84,8 +84,8 @@ public class CustomerServiceS7Impl implements CustomerServiceS7 {
     }
 
     @Override
-    public CustomerS7 getCustomerById(UUID uuid) {
-        return customerMap.get(uuid);
+    public Optional<CustomerS7> getCustomerById(UUID uuid) {
+        return Optional.of( customerMap.get(uuid));
     }
 
     @Override

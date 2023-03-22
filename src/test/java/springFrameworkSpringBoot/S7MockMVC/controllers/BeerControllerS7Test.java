@@ -17,6 +17,7 @@ import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -135,7 +136,7 @@ class BeerControllerS7Test {
     void getBeerById() throws Exception {
         BeerS7 testBeer = beerServiceImpl.listBeers().get(0);
 
-        given(beerService.getBeerById(testBeer.getId())).willReturn(testBeer);
+        given(beerService.getBeerById(testBeer.getId())).willReturn(Optional.empty());
 
         mockMvc.perform(get(BeerControllerS7.BEER_PATH_ID, testBeer.getId())
                         .accept(MediaType.APPLICATION_JSON))

@@ -5,6 +5,7 @@ package springFrameworkSpringBoot.S7MockMVC.services;
 import springFrameworkSpringBoot.S7MockMVC.Model.CustomerS7;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -12,7 +13,7 @@ import java.util.UUID;
  * @Author Hazeem Hassan
  */
 public interface CustomerServiceS7 {
-    CustomerS7 getCustomerById(UUID uuid);
+    Optional<CustomerS7> getCustomerById(UUID uuid);
 
     List<CustomerS7> getAllCustomers();
 

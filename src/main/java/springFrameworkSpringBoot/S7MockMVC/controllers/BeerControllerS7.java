@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7;
+import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
 
 import java.util.List;
 import java.util.UUID;
@@ -72,7 +73,7 @@ public class BeerControllerS7 {
 
         log.debug("Get Beer by Id - in controller");
 
-        return beerServiceS7.getBeerById(beerId);
+        return beerServiceS7.getBeerById(beerId).orElseThrow(NotFoundException::new);
     }
 
 

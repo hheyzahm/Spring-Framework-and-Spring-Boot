@@ -16,6 +16,7 @@ import springFrameworkSpringBoot.S7MockMVC.services.CustomerServiceS7Impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,8 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CustomerControllerS7.class)
-class CustomerControllerS7S7Test {
-
+class CustomerControllerS7Test {
     @MockBean
     CustomerServiceS7 customerService;
 
@@ -39,7 +39,7 @@ class CustomerControllerS7S7Test {
     @Autowired
     ObjectMapper objectMapper;
 
-    CustomerServiceS7 customerServiceImpl;
+    CustomerServiceS7Impl customerServiceImpl;
 
     @BeforeEach
     void setUp() {
@@ -128,10 +128,19 @@ class CustomerControllerS7S7Test {
     }
 
     @Test
+    void getCustomerByIdNotFound() throws Exception {
+
+        given(customerService.getCustomerById(any(UUID.class))).willReturn(Optional.empty());
+
+        mockMvc.perform(get(CustomerControllerS7.CUSTOMER_PATH_ID, UUID.randomUUID()))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void getCustomerById() throws Exception {
         CustomerS7 customer = customerServiceImpl.getAllCustomers().get(0);
 
-        given(customerService.getCustomerById(customer.getId())).willReturn(customer);
+        given(customerService.getCustomerById(customer.getId())).willReturn(Optional.of(customer));
 
         mockMvc.perform(get(CustomerControllerS7.CUSTOMER_PATH_ID, customer.getId())
                         .accept(MediaType.APPLICATION_JSON))

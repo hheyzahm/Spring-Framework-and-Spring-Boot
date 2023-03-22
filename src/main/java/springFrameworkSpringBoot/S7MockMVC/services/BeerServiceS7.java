@@ -5,6 +5,7 @@ package springFrameworkSpringBoot.S7MockMVC.services;
 import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -14,7 +15,7 @@ import java.util.UUID;
 public interface BeerServiceS7 {
     List<BeerS7> listBeers();
 
-    BeerS7 getBeerById(UUID id);
+    Optional<BeerS7>  getBeerById(UUID id);
 
     BeerS7 saveNewBeer(BeerS7 beerS7);
 
