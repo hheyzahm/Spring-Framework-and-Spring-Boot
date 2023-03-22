@@ -1,4 +1,4 @@
-package springFrameworkSpringBoot.S7MockMVC.controllers;
+package springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -6,9 +6,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springFrameworkSpringBoot.S7MockMVC.Model.CustomerS7;
-import springFrameworkSpringBoot.S7MockMVC.services.CustomerServiceS7;
+
 import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
+import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.Model.CustomerDTO;
+import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.services.CustomerServiceS9;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,54 +21,54 @@ import java.util.UUID;
 //@RequestMapping("")
 @AllArgsConstructor
 @RestController
-public class CustomerControllerS7 {
-    public static final String CUSTOMER_PATH = "/MockMVC/api/v1/customer/";
+public class CustomerControllerS9 {
+    public static final String CUSTOMER_PATH = "/S9/api/v1/customer/";
     public static final String CUSTOMER_PATH_ID = CUSTOMER_PATH + "/{customerId}";
-    private final CustomerServiceS7 customerServiceS7;
+    private final CustomerServiceS9 customerServiceS9;
 
    /* @DeleteMapping("{customerId}")
     public ResponseEntity deleteCustomerByIdMockMVC(@PathVariable("customerId") UUID customerId){
 
-        customerServiceS7.deleteCustomerById(customerId);
+        customeCustomerDTO.deleteCustomerById(customerId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("{customerId}")
     public ResponseEntity updateCustomerByIDMockMVC(@PathVariable("customerId") UUID customerId,
-                                             @RequestBody CustomerS7 customerS7){
+                                             @RequestBody CustomerDTO CustomerDTO){
 
-        customerServiceS7.updateCustomerById(customerId, customerS7);
+        customeCustomerDTO.updateCustomerById(customerId, CustomerDTO);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping
-    public ResponseEntity handlePostMockMVC(@RequestBody CustomerS7 customerS7){
-        CustomerS7 savedCustomerS7 = customerServiceS7.saveNewCustomer(customerS7);
+    public ResponseEntity handlePostMockMVC(@RequestBody CustomerDTO CustomerDTO){
+        CustomerDTO savedCustomerDTO = customeCustomerDTO.saveNewCustomer(CustomerDTO);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/api/v1/MockMVC/customer/" + savedCustomerS7.getId().toString());
+        headers.add("Location", "/api/v1/MockMVC/customer/" + savedCustomerDTO.getId().toString());
 
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<CustomerS7> listAllCustomersMockMVC(){
-        return customerServiceS7.getAllCustomers();
+    public List<CustomerDTO> listAllCustomersMockMVC(){
+        return customeCustomerDTO.getAllCustomers();
     }
 
     @RequestMapping(value = "{customerId}", method = RequestMethod.GET)
-    public CustomerS7 getCustomerByIdMockMVC(@PathVariable("customerId") UUID id){
-        return customerServiceS7.getCustomerById(id);
+    public CustomerDTO getCustomerByIdMockMVC(@PathVariable("customerId") UUID id){
+        return customeCustomerDTO.getCustomerById(id);
     }*/
 
 
-       private final CustomerServiceS7 customerService;
+       private final CustomerServiceS9 customerService;
 
        @PatchMapping(CUSTOMER_PATH_ID)
        public ResponseEntity patchCustomerById(@PathVariable("customerId") UUID customerId,
-                                               @RequestBody CustomerS7 customer){
+                                               @RequestBody CustomerDTO customer){
 
            customerService.patchCustomerById(customerId, customer);
 
@@ -84,7 +85,7 @@ public class CustomerControllerS7 {
 
        @PutMapping(CUSTOMER_PATH_ID)
        public ResponseEntity updateCustomerByID(@PathVariable("customerId") UUID customerId,
-                                                @RequestBody CustomerS7 customer){
+                                                @RequestBody CustomerDTO customer){
 
            customerService.updateCustomerById(customerId, customer);
 
@@ -92,8 +93,8 @@ public class CustomerControllerS7 {
        }
 
        @PostMapping(CUSTOMER_PATH)
-       public ResponseEntity handlePost(@RequestBody CustomerS7 customer){
-           CustomerS7 savedCustomer = customerService.saveNewCustomer(customer);
+       public ResponseEntity handlePost(@RequestBody CustomerDTO customer){
+           CustomerDTO savedCustomer = customerService.saveNewCustomer(customer);
 
            HttpHeaders headers = new HttpHeaders();
            headers.add("Location", CUSTOMER_PATH + "/" + savedCustomer.getId().toString());
@@ -102,12 +103,12 @@ public class CustomerControllerS7 {
        }
 
        @GetMapping(CUSTOMER_PATH)
-       public List<CustomerS7> listAllCustomers(){
+       public List<CustomerDTO> listAllCustomers(){
            return customerService.getAllCustomers();
        }
 
        @GetMapping(value = CUSTOMER_PATH_ID)
-       public CustomerS7 getCustomerById(@PathVariable("customerId") UUID id){
+       public CustomerDTO getCustomerById(@PathVariable("customerId") UUID id){
            return customerService.getCustomerById(id).orElseThrow(NotFoundException::new);
        }
 

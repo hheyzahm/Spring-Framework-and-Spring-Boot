@@ -1,4 +1,4 @@
-package springFrameworkSpringBoot.S7MockMVC.controllers;
+package springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.controllers;
 
 
 import lombok.AllArgsConstructor;
@@ -8,9 +8,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
-import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7;
+
 import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
+import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.Model.BeerDTO;
+import springFrameworkSpringBoot.S9SpringDataJPAWithSpringMVC.services.BeerServiceS9;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,17 +23,16 @@ import java.util.UUID;
 @Slf4j
 @AllArgsConstructor
 @RestController
-//@RequestMapping("/api/v1/MockMVC/beer/")
-public class BeerControllerS7 {
+public class BeerControllerS9 {
 
-    public static final String BEER_PATH = "/MockMVC/api/v1/beer";
+    public static final String BEER_PATH = "/S9/api/v1/beer";
     public static final String BEER_PATH_ID = BEER_PATH + "/{beerId}";
-    private final BeerServiceS7 beerServiceS7;
+    private final BeerServiceS9 beerServiceS9;
 
     @PatchMapping(BEER_PATH_ID)
-    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody BeerS7 beer) {
+    public ResponseEntity updateBeerPatchById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDTO beer) {
 
-        beerServiceS7.patchBeerById(beerId, beer);
+        beerServiceS9.patchBeerById(beerId, beer);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -40,23 +40,23 @@ public class BeerControllerS7 {
     @DeleteMapping(BEER_PATH_ID)
     public ResponseEntity deleteById(@PathVariable("beerId") UUID beerId) {
 
-        beerServiceS7.deleteById(beerId);
+        beerServiceS9.deleteById(beerId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(BEER_PATH_ID)
-    public ResponseEntity updateById(@PathVariable("beerId") UUID beerId, @RequestBody BeerS7 beer) {
+    public ResponseEntity updateById(@PathVariable("beerId") UUID beerId, @RequestBody BeerDTO beer) {
 
-        beerServiceS7.updateBeerById(beerId, beer);
+        beerServiceS9.updateBeerById(beerId, beer);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping(BEER_PATH)
-    public ResponseEntity handlePost(@RequestBody BeerS7 beer) {
+    public ResponseEntity handlePost(@RequestBody BeerDTO beer) {
 
-        BeerS7 savedBeer = beerServiceS7.saveNewBeer(beer);
+        BeerDTO savedBeer = beerServiceS9.saveNewBeer(beer);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", BEER_PATH + "/" + savedBeer.getId().toString());
@@ -65,16 +65,16 @@ public class BeerControllerS7 {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerS7> listBeers() {
-        return beerServiceS7.listBeers();
+    public List<BeerDTO> listBeers() {
+        return beerServiceS9.listBeers();
     }
 
     @GetMapping(value = BEER_PATH_ID)
-    public BeerS7 getBeerById(@PathVariable("beerId") UUID beerId) {
+    public BeerDTO getBeerById(@PathVariable("beerId") UUID beerId) {
 
         log.debug("Get Beer by Id - in controller");
 
-        return beerServiceS7.getBeerById(beerId).orElseThrow(NotFoundException::new);
+        return beerServiceS9.getBeerById(beerId).orElseThrow(NotFoundException::new);
     }
 
 
