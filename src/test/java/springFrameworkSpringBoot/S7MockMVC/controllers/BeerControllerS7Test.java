@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import springFrameworkSpringBoot.S7MockMVC.Model.BeerS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7;
 import springFrameworkSpringBoot.S7MockMVC.services.BeerServiceS7Impl;
+import springFrameworkSpringBoot.S8ExceptionHandeling.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +51,14 @@ class BeerControllerS7Test {
     void setUp() {
         beerServiceImpl = new BeerServiceS7Impl();
     }
+    @Test
+    void getBeerByIdNotFound() throws Exception {
 
+        given(beerService.getBeerById(any(UUID.class))).willThrow(NotFoundException.class);
+
+        mockMvc.perform(get(BeerControllerS7.BEER_PATH_ID, UUID.randomUUID()))
+                .andExpect(status().isNotFound());
+    }
     @Test
     void testPatchBeer() throws Exception {
         BeerS7 beer = beerServiceImpl.listBeers().get(0);
