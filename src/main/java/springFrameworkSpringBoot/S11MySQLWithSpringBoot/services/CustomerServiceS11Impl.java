@@ -1,17 +1,18 @@
-package springFrameworkSpringBoot.S10DataValidation.services;
+package springFrameworkSpringBoot.S11MySQLWithSpringBoot.services;
 
 import org.springframework.util.StringUtils;
-import springFrameworkSpringBoot.S10DataValidation.Model.CustomerDTOS10;
+import springFrameworkSpringBoot.S11MySQLWithSpringBoot.Model.CustomerDTOS11;
+
 
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class CustomerServiceS10Impl implements CustomerServiceS10 {
+public class CustomerServiceS11Impl implements CustomerServiceS11 {
 
-    private Map<UUID, CustomerDTOS10> customerMap;
+    private Map<UUID, CustomerDTOS11> customerMap;
 
-    public CustomerServiceS10Impl() {
-        CustomerDTOS10 customer1 = CustomerDTOS10.builder()
+    public CustomerServiceS11Impl() {
+        CustomerDTOS11 customer1 = CustomerDTOS11.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 1")
                 .version(1)
@@ -19,7 +20,7 @@ public class CustomerServiceS10Impl implements CustomerServiceS10 {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        CustomerDTOS10 customer2 = CustomerDTOS10.builder()
+        CustomerDTOS11 customer2 = CustomerDTOS11.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 2")
                 .version(1)
@@ -27,7 +28,7 @@ public class CustomerServiceS10Impl implements CustomerServiceS10 {
                 .updateDate(LocalDateTime.now())
                 .build();
 
-        CustomerDTOS10 customer3 = CustomerDTOS10.builder()
+        CustomerDTOS11 customer3 = CustomerDTOS11.builder()
                 .id(UUID.randomUUID())
                 .name("Customer 3")
                 .version(1)
@@ -42,8 +43,8 @@ public class CustomerServiceS10Impl implements CustomerServiceS10 {
     }
 
     @Override
-    public Optional<CustomerDTOS10> patchCustomerById(UUID customerId, CustomerDTOS10 customer) {
-        CustomerDTOS10 existing = customerMap.get(customerId);
+    public Optional<CustomerDTOS11> patchCustomerById(UUID customerId, CustomerDTOS11 customer) {
+        CustomerDTOS11 existing = customerMap.get(customerId);
 
         if (StringUtils.hasText(customer.getName())) {
             existing.setName(customer.getName());
@@ -60,16 +61,16 @@ public class CustomerServiceS10Impl implements CustomerServiceS10 {
     }
 
     @Override
-    public Optional<CustomerDTOS10> updateCustomerById(UUID customerId, CustomerDTOS10 customer) {
-        CustomerDTOS10 existing = customerMap.get(customerId);
+    public Optional<CustomerDTOS11> updateCustomerById(UUID customerId, CustomerDTOS11 customer) {
+        CustomerDTOS11 existing = customerMap.get(customerId);
         existing.setName(customer.getName());
         return Optional.of(existing);
     }
 
     @Override
-    public CustomerDTOS10 saveNewCustomer(CustomerDTOS10 customer) {
+    public CustomerDTOS11 saveNewCustomer(CustomerDTOS11 customer) {
 
-        CustomerDTOS10 savedCustomer = CustomerDTOS10.builder()
+        CustomerDTOS11 savedCustomer = CustomerDTOS11.builder()
                 .id(UUID.randomUUID())
                 .version(1)
                 .updateDate(LocalDateTime.now())
@@ -83,12 +84,12 @@ public class CustomerServiceS10Impl implements CustomerServiceS10 {
     }
 
     @Override
-    public Optional<CustomerDTOS10> getCustomerById(UUID uuid) {
+    public Optional<CustomerDTOS11> getCustomerById(UUID uuid) {
         return Optional.of(customerMap.get(uuid));
     }
 
     @Override
-    public List<CustomerDTOS10> getAllCustomers() {
+    public List<CustomerDTOS11> getAllCustomers() {
         return new ArrayList<>(customerMap.values());
     }
 }

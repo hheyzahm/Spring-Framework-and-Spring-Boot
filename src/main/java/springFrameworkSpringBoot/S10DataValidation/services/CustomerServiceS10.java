@@ -24,4 +24,5 @@ public interface CustomerServiceS10 {
 
     Optional<CustomerDTOS10> patchCustomerById(UUID customerId, CustomerDTOS10 customer);
 
+
 }

@@ -1,6 +1,5 @@
 package springFrameworkSpringBoot.S10DataValidation.repositories;
 
-import static org.junit.jupiter.api.Assertions.*;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

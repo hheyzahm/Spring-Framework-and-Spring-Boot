@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CustomerControllerS10.class)
-class CustomerControllerS10S10Test {
+class CustomerControllerS10Test {
 
     @MockBean
     CustomerServiceS10 customerService;
@@ -43,7 +43,7 @@ class CustomerControllerS10S10Test {
     @Autowired
     ObjectMapper objectMapper;
 
-    CustomerServiceS10 customerServiceImpl;
+    CustomerServiceS10Impl customerServiceImpl;
 
     @BeforeEach
     void setUp() {
