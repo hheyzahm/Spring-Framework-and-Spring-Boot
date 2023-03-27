@@ -25,7 +25,7 @@ import java.util.UUID;
 //@RequestMapping("/api/v1/MockMVC/beer/")
 public class BeerControllerS11 {
 
-    public static final String BEER_PATH = "/S10/api/v1/beer";
+    public static final String BEER_PATH = "/S11/api/v1/beer";
     public static final String BEER_PATH_ID = BEER_PATH + "/{beerId}";
 
     private final BeerServiceS11 beerService;
