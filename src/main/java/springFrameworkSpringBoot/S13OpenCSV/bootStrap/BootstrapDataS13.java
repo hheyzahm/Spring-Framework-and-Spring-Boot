@@ -1,4 +1,4 @@
-package springFrameworkSpringBoot.S13OpenCSV.service.bootStrap;
+package springFrameworkSpringBoot.S13OpenCSV.bootStrap;
 
 
 import lombok.RequiredArgsConstructor;
@@ -9,11 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 
 import springFrameworkSpringBoot.S12FlywayMigrations.Model.BeerStyleS12;
-import springFrameworkSpringBoot.S12FlywayMigrations.entities.BeerEntityS12;
+import springFrameworkSpringBoot.S13OpenCSV.entity.BeerEntityS13;
 import springFrameworkSpringBoot.S12FlywayMigrations.entities.CustomerEntityS12;
-import springFrameworkSpringBoot.S12FlywayMigrations.repositories.BeerRepositoryS12;
+
 import springFrameworkSpringBoot.S12FlywayMigrations.repositories.CustomerRepositoryS12;
 import springFrameworkSpringBoot.S13OpenCSV.model.BeerCSVRecord;
+import springFrameworkSpringBoot.S13OpenCSV.repository.BeerRepositoryS13;
 import springFrameworkSpringBoot.S13OpenCSV.service.BeerCsvService;
 
 import java.io.File;
@@ -30,9 +31,9 @@ import java.util.UUID;
  */
 @Component
 @RequiredArgsConstructor
-public class BootstrapDataS12 implements CommandLineRunner {
+public class BootstrapDataS13 implements CommandLineRunner {
     private final BeerCsvService beerCsvService;
-    private final BeerRepositoryS12 beerRepository;
+    private final BeerRepositoryS13 beerRepository;
     private final CustomerRepositoryS12 customerRepository;
     @Transactional
     @Override
@@ -62,7 +63,7 @@ public class BootstrapDataS12 implements CommandLineRunner {
                     default -> BeerStyleS12.PILSNER;
                 };
 
-                beerRepository.save(BeerEntityS12.builder()
+                beerRepository.save(BeerEntityS13.builder()
                         .beerName(StringUtils.abbreviate(beerCSVRecord.getBeer(), 50))
                         .beerStyle(beerStyle)
                         .price(BigDecimal.TEN)
@@ -75,7 +76,7 @@ public class BootstrapDataS12 implements CommandLineRunner {
 
     private void loadBeerData() {
         if (beerRepository.count() == 0){
-            BeerEntityS12 beer1 = BeerEntityS12.builder()
+            BeerEntityS13 beer1 = BeerEntityS13.builder()
                     .beerName("Galaxy Cat")
                     .beerStyle(BeerStyleS12.PALE_ALE)
                     .upc("12356")
@@ -85,7 +86,7 @@ public class BootstrapDataS12 implements CommandLineRunner {
                     .updateDate(LocalDateTime.now())
                     .build();
 
-            BeerEntityS12 beer2 = BeerEntityS12.builder()
+            BeerEntityS13 beer2 = BeerEntityS13.builder()
                     .beerName("Crank")
                     .beerStyle(BeerStyleS12.PALE_ALE)
                     .upc("12356222")
@@ -95,7 +96,7 @@ public class BootstrapDataS12 implements CommandLineRunner {
                     .updateDate(LocalDateTime.now())
                     .build();
 
-            BeerEntityS12 beer3 = BeerEntityS12.builder()
+            BeerEntityS13 beer3 = BeerEntityS13.builder()
                     .beerName("Sunshine City")
                     .beerStyle(BeerStyleS12.IPA)
                     .upc("12356")
