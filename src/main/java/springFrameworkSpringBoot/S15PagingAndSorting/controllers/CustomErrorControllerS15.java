@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @Author Hazeem Hassan
  */
 @ControllerAdvice
-public class CustomErrorController {
+public class CustomErrorControllerS15 {
 
     @ExceptionHandler
     ResponseEntity handleJPAViolations(TransactionSystemException exception){

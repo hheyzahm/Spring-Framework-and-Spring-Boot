@@ -10,7 +10,7 @@ import springFrameworkSpringBoot.S8ExceptionHandling.NotFoundException;
  */
 //@ControllerAdvice
 // above annotation is used for global exception handler process
-public class ExceptionController {
+public class ExceptionControllerS15 {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity handleNotFoundException() {
