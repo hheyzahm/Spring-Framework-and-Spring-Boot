@@ -1,0 +1,115 @@
+package springFrameworkSpringBoot.S21SpringSecurityBasicAuth.client;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.web.client.HttpClientErrorException;
+import springFrameworkSpringBoot.BeerStyle;
+import springFrameworkSpringBoot.S20TestingRestTemplateWithMockito.client.BeerClientS20Impl;
+import springFrameworkSpringBoot.S20TestingRestTemplateWithMockito.model.BeerDTOS20;
+
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class BeerClientImplTest {
+
+    @Autowired
+    BeerClientS20Impl beerClient;
+    @Test
+    void listBeersNoBeerName() {
+
+        beerClient.listBeers(null, null, null, null, null);
+    }
+    @Test
+    void testCreateBeer() {
+
+        BeerDTOS20 newDto = BeerDTOS20.builder()
+                .price(new BigDecimal("10.99"))
+                .beerName("Mango Bobs")
+                .beerStyle(BeerStyle.IPA)
+                .quantityOnHand(500)
+                .upc("123245")
+                .build();
+
+        BeerDTOS20 savedDto = beerClient.createBeer(newDto);
+        assertNotNull(savedDto);
+    }
+
+    @Test
+    void listBeers() {
+
+        beerClient.listBeers("ALE", null, null, null, null);
+    }
+
+    @Test
+    void getBeerByID() {
+        Page<BeerDTOS20> beerDTOS = beerClient.listBeers();
+
+        BeerDTOS20 dto = beerDTOS.getContent().get(0);
+
+        BeerDTOS20 byID= beerClient.getBeerById(dto.getId());
+        assertNotNull(byID);
+    }
+    @Test
+    void testDeleteBeer() {
+        BeerDTOS20 newDto = BeerDTOS20.builder()
+                .price(new BigDecimal("10.99"))
+                .beerName("Mango Bobs 2")
+                .beerStyle(BeerStyle.IPA)
+                .quantityOnHand(500)
+                .upc("123245")
+                .build();
+
+        BeerDTOS20 beerDto = beerClient.createBeer(newDto);
+
+        beerClient.deleteBeer(beerDto.getId());
+
+        assertThrows(HttpClientErrorException.class, () -> {
+            //should error
+            beerClient.getBeerById(beerDto.getId());
+        });
+    }
+
+    @Test
+    void testUpdateBeer() {
+
+        BeerDTOS20 newDto = BeerDTOS20.builder()
+                .price(new BigDecimal("10.99"))
+                .beerName("Mango Bobs 2")
+                .beerStyle(BeerStyle.IPA)
+                .quantityOnHand(500)
+                .upc("123245")
+                .build();
+
+        BeerDTOS20 beerDto = beerClient.createBeer(newDto);
+
+        final String newName = "Mango Bobs 3";
+        beerDto.setBeerName(newName);
+        BeerDTOS20 updatedBeer = beerClient.updateBeer(beerDto);
+
+        assertEquals(newName, updatedBeer.getBeerName());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
