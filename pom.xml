@@ -113,6 +113,12 @@
             <artifactId>spring-security-oauth2-authorization-server</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <!--Spring Server dependency-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <!--Added According to Need-->
     </dependencies>
 
